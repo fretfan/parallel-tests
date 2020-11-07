@@ -22,6 +22,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+    testImplementation("com.codeborne:selenide:5.15.0")
 }
 // Project properties can be accessed via delegation
 tasks.withType<Test> {
@@ -39,6 +40,7 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.register<Test>("testSlow") {
+    outputs.upToDateWhen { false }
     useJUnitPlatform()
     filter {
         includeTestsMatching("asd.paralleltests.slow.*")
@@ -51,4 +53,19 @@ tasks.register<Test>("testSlow") {
 
     systemProperty("junit.jupiter.execution.parallel.config.strategy", "fixed")
     systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", 12)
+}
+
+tasks.register<Test>("uitest") {
+    outputs.upToDateWhen { false }
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching("asd.paralleltests.ui.*")
+        excludeTestsMatching("asd.paralleltests.quick.*")
+    }
+    systemProperty("junit.jupiter.execution.parallel.enabled", true)
+    systemProperty("junit.jupiter.execution.parallel.mode.default", "concurrent")
+    systemProperty("junit.jupiter.execution.parallel.mode.classes.default", "concurrent")
+
+    systemProperty("junit.jupiter.execution.parallel.config.strategy", "fixed")
+    systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism",2)
 }
