@@ -55,7 +55,7 @@ tasks.register<Test>("testSlow") {
     systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", 12)
 }
 
-tasks.register<Test>("uitest") {
+tasks.register<Test>("testUi") {
     outputs.upToDateWhen { false }
     useJUnitPlatform()
     filter {
