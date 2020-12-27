@@ -75,15 +75,21 @@ tasks.register<Test>("testNg") {
     outputs.upToDateWhen { false }
     useTestNG{
         options {
+            useDefaultListeners = true
             threadCount = 4
             parallel = "methods"
+            println("useDefaultListeners: $useDefaultListeners")
             println("threadCount: $threadCount")
             println("parallelMode: $parallel")
         }
+        reports.html.isEnabled = false
+        reports.junitXml.isEnabled = false
+        println("reports.enabled: ${reports.enabled}")
+        println("reports.html.isEnabled: ${reports.html.isEnabled}")
+        println("reports.junitXml.isEnabled: ${reports.junitXml.isEnabled}")
     }
     filter {
         includeTestsMatching("asd.paralleltests.slow.*")
     }
-//    include("asd/paralleltests/asd.paralleltests.slowtestng/**")
 
 }
