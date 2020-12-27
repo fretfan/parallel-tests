@@ -65,14 +65,14 @@ tasks.register<Test>("testUi") {
         includeTestsMatching("asd.paralleltests.ui.*")
         excludeTestsMatching("asd.paralleltests.quick.*")
     }
-//    systemProperty("junit.jupiter.execution.parallel.enabled", true)
-//    systemProperty("junit.jupiter.execution.parallel.mode.default", "concurrent")
-//    systemProperty("junit.jupiter.execution.parallel.mode.classes.default", "concurrent")
+    systemProperty("junit.jupiter.execution.parallel.enabled", true)
+    systemProperty("junit.jupiter.execution.parallel.mode.default", "concurrent")
+    systemProperty("junit.jupiter.execution.parallel.mode.classes.default", "concurrent")
 //
-//    systemProperty("junit.jupiter.execution.parallel.config.strategy", "fixed")
-//    systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", 2)
+    systemProperty("junit.jupiter.execution.parallel.config.strategy", "fixed")
+    systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", 4)
 }
-
+/*
 tasks.register<Test>("testNg") {
     outputs.upToDateWhen { false }
     useTestNG{
@@ -95,3 +95,4 @@ tasks.register<Test>("testNg") {
     }
 
 }
+ */
