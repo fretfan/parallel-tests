@@ -47,13 +47,15 @@ tasks.register<Test>("testSlow") {
         includeTestsMatching("asd.paralleltests.slow.*")
         excludeTestsMatching("asd.paralleltests.quick.*")
     }
+    maxParallelForks = 1
+    println("maxParallelForks: $maxParallelForks")
     systemProperty("junit.jupiter.execution.parallel.enabled", true)
 //    systemProperty("junit.jupiter.execution.parallel.mode.default", "same_thread")
     systemProperty("junit.jupiter.execution.parallel.mode.default", "concurrent")
     systemProperty("junit.jupiter.execution.parallel.mode.classes.default", "concurrent")
 
     systemProperty("junit.jupiter.execution.parallel.config.strategy", "fixed")
-    systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", 12)
+    systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", 4)
 }
 
 tasks.register<Test>("testUi") {
