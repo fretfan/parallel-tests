@@ -23,7 +23,7 @@ dependencies {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     testImplementation("com.codeborne:selenide:5.15.0")
-    testImplementation("org.testng:testng:7.3.0")
+//    testImplementation("org.testng:testng:7.3.0")
 }
 // Project properties can be accessed via delegation
 tasks.withType<Test> {
@@ -65,12 +65,12 @@ tasks.register<Test>("testUi") {
         includeTestsMatching("asd.paralleltests.ui.*")
         excludeTestsMatching("asd.paralleltests.quick.*")
     }
-    systemProperty("junit.jupiter.execution.parallel.enabled", true)
-    systemProperty("junit.jupiter.execution.parallel.mode.default", "concurrent")
-    systemProperty("junit.jupiter.execution.parallel.mode.classes.default", "concurrent")
-
-    systemProperty("junit.jupiter.execution.parallel.config.strategy", "fixed")
-    systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", 2)
+//    systemProperty("junit.jupiter.execution.parallel.enabled", true)
+//    systemProperty("junit.jupiter.execution.parallel.mode.default", "concurrent")
+//    systemProperty("junit.jupiter.execution.parallel.mode.classes.default", "concurrent")
+//
+//    systemProperty("junit.jupiter.execution.parallel.config.strategy", "fixed")
+//    systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", 2)
 }
 
 tasks.register<Test>("testNg") {
@@ -91,7 +91,7 @@ tasks.register<Test>("testNg") {
         println("reports.junitXml.isEnabled: ${reports.junitXml.isEnabled}")
     }
     filter {
-        includeTestsMatching("asd.paralleltests.slow.*")
+        includeTestsMatching("asd.paralleltests.ui.*")
     }
 
 }
